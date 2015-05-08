@@ -10,5 +10,14 @@
   <%= @person.last_name %>
 </p>
 
+<ul>
+	<strong>Phone numbers:</strong>
+	<% @person.phone_numbers.each do |phone_number| %>
+		<li><%= phone_number.number %></li>
+	<% end %>
+</ul>
+
+<%= link_to "Add new Phone Number", new_phone_number_path(person_id: @person.id) %>
+
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>
