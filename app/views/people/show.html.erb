@@ -42,9 +42,9 @@
 	<% end %>
 </table>
 
-<%= link_to "Add new Phone Number", new_phone_number_path(contact_id: @person.id) %>
+<%= link_to "Add new Phone Number", new_phone_number_path(contact_id: @person.id, contact_type: @person.class.to_s) %>
 <br />
-<%= link_to "Add new Email Address", new_email_address_path(contact_id: @person.id) %>
+<%= link_to "Add new Email Address", new_email_address_path(person_id: @person.id) %>
 <br />
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>
