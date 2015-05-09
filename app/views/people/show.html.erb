@@ -10,7 +10,7 @@
   <%= @person.last_name %>
 </p>
 
-<table>
+<table class='phone_numbers_table'>
 	<strong>Phone numbers:</strong>
 	<tr>
 		<th>Phone Number</th>
@@ -26,7 +26,7 @@
 	<% end %>
 </table>
 
-<table>
+<table class='email_addresses_table'>
 	<strong>Email Addresses: </strong>
 	<tr>
 		<th>Email Address</th>
@@ -36,6 +36,7 @@
 	<% @person.email_addresses.each do |email_address| %>
 		<tr>
 			<td><%= email_address.address %></td>
+			<td><%= link_to "Edit", edit_email_address_path(email_address) %></td>
 		</tr>
 	<% end %>
 </table>

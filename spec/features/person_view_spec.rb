@@ -84,5 +84,16 @@ describe 'The Person View', type: :feature do
 			expect(current_path).to eq(person_path(person))
 			expect(page).to have_selector('td', text: "johndoesplus@example.com")
 		end
+
+		it "edits an existing email address" do 
+			old_email = person.email_addresses.first
+			new_email = "johnjamesdoe@example.com"
+			within('.email_addresses_table') do
+				first(:link, "Edit").click
+      end
+    	fill_in("Address", with: new_email)
+    	click_button "Update Email address"
+    	expect(current_path).to eq(person_path(person))
+		end
 	end
 end
