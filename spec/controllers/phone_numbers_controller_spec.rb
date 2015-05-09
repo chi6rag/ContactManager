@@ -24,11 +24,15 @@ RSpec.describe PhoneNumbersController, type: :controller do
   # PhoneNumber. As you add validations to PhoneNumber, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {number: '+919555729555', person_id: 1}
+    {number: '+919555729555', contact_id: 1, contact_type: 'Person'}
   }
 
   let(:invalid_attributes) {
-    {number: nil, person_id: nil}
+    {number: nil, contact_id: nil, contact_type: nil
+
+
+
+    }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -72,7 +76,7 @@ RSpec.describe PhoneNumbersController, type: :controller do
 
       let(:alice){ Person.create(first_name: 'Alice', last_name: 'Jenkins') }
       let(:valid_attributes){
-        {number: "+919999174467", person_id: alice.id}
+        {number: "+919999174467", contact_id: alice.id, contact_type: alice.class.to_s}
       }
 
       it "creates a new PhoneNumber" do
@@ -112,15 +116,15 @@ RSpec.describe PhoneNumbersController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:bob){ Person.create(first_name: 'Bob', last_name: 'Builder') }
-      let(:valid_attributes) { {number: '+919999820626', person_id: bob.id} }
-      let(:new_attributes) { {number: '+919999174467', person_id: bob.id} }
+      let(:valid_attributes) { {number: '+919999820626', contact_id: bob.id, contact_type: bob.class.to_s} }
+      let(:new_attributes) { {number: '+919999174467', contact_id: bob.id, contact_type: bob.class.to_s} }
 
       it "updates the requested phone_number" do
         phone_number = PhoneNumber.create! valid_attributes
         put :update, {:id => phone_number.to_param, :phone_number => new_attributes}, valid_session
         phone_number.reload
         expect(phone_number.number).to eq("+919999174467")
-        expect(phone_number.person_id).to eq(bob.id)
+        expect(phone_number.contact_id).to eq(bob.id)
       end
 
       it "assigns the requested phone_number as @phone_number" do
@@ -154,7 +158,7 @@ RSpec.describe PhoneNumbersController, type: :controller do
   describe "DELETE #destroy" do
 
     let(:sam){ Person.create(first_name: 'Samuel', last_name: 'David') }
-    let(:valid_attributes){ {number: "+919999888777", person_id: sam.id} }
+    let(:valid_attributes){ {number: "+919999888777", contact_id: sam.id, contact_type: sam.class.to_s} }
 
     it "destroys the requested phone_number" do
       phone_number = PhoneNumber.create! valid_attributes
