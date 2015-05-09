@@ -85,6 +85,14 @@ describe 'The Person View', type: :feature do
 			expect(page).to have_selector('td', text: "johndoesplus@example.com")
 		end
 
+		it "has links to edit email address" do 
+			within('.email_addresses_table') do
+				person.email_addresses.each do |email_address|
+					expect(page).to have_selector('td', text: email_address.address)
+				end
+			end
+		end
+
 		it "edits an existing email address" do 
 			old_email = person.email_addresses.first
 			new_email = "johnjamesdoe@example.com"
@@ -94,6 +102,26 @@ describe 'The Person View', type: :feature do
     	fill_in("Address", with: new_email)
     	click_button "Update Email address"
     	expect(current_path).to eq(person_path(person))
+    	expect(page).to have_selector('td', text: new_email)
 		end
+
+		it "has links to delete email addresses" do
+			within('.email_addresses_table') do 
+				person.email_addresses.each do |email_address|
+					expect(page).to have_link("Delete", email_address_path(email_address))
+				end
+			end
+		end
+
+		it "deletes an existing email address" do 
+			existing_email_address = person.email_addresses.first
+			within('.email_addresses_table') do 
+				first(:link, "Delete").click
+			end
+			expect(current_path).to eq(person_path(person))
+			expect(page).to_not have_selector('td', text: existing_email_address)
+		end
+
 	end
+
 end
