@@ -26,6 +26,20 @@
 	<% end %>
 </table>
 
+<table>
+	<strong>Email Addresses: </strong>
+	<tr>
+		<th>Email Address</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
+	<% @person.email_addresses.each do |email_address| %>
+		<tr>
+			<td><%= email_address.address %></td>
+		</tr>
+	<% end %>
+</table>
+
 <%= link_to "Add new Phone Number", new_phone_number_path(person_id: @person.id) %>
 
 <%= link_to 'Edit', edit_person_path(@person) %> |
