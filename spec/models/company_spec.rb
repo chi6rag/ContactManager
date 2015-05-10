@@ -11,4 +11,10 @@ RSpec.describe Company, type: :model do
   	company.name = nil
   	expect(company).to_not be_valid
   end
+
+  it "responds with its phone numbers after they're created" do
+  	company.phone_numbers.build(number: '+919999999999')
+  	expect(company.phone_numbers.map(&:number)).to eq(['+919999999999'])
+  end
+
 end
