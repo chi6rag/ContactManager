@@ -91,9 +91,7 @@ RSpec.describe PhoneNumbersController, type: :controller do
         expect(assigns(:phone_number)).to be_persisted
       end
 
-      it "redirects to the created phone_number's person" do
-        # alice = Person.create(first_name: 'Alice', last_name: 'Jenkins')
-        # valid_attributes = { number: "+919999174467", person_id: alice.id }
+      it "redirects to the created phone_number's contact" do
         post :create, {:phone_number => valid_attributes}, valid_session
         expect(response).to redirect_to(person_path(alice))
       end
@@ -114,7 +112,7 @@ RSpec.describe PhoneNumbersController, type: :controller do
   end
 
   describe "PUT #update" do
-    context "with valid params" do
+    context "with valid person params" do
       let(:bob){ Person.create(first_name: 'Bob', last_name: 'Builder') }
       let(:valid_attributes) { {number: '+919999820626', contact_id: bob.id, contact_type: bob.class.to_s} }
       let(:new_attributes) { {number: '+919999174467', contact_id: bob.id, contact_type: bob.class.to_s} }
@@ -140,7 +138,33 @@ RSpec.describe PhoneNumbersController, type: :controller do
       end
     end
 
-    context "with invalid params" do
+    context "with valid company params" do
+      let(:awesome_corp){ Company.create(name: 'AwesomeCorp') }
+      let(:valid_attributes) { {number: '+919999820626', contact_id: awesome_corp.id, contact_type: awesome_corp.class.to_s} }
+      let(:new_attributes) { {number: '+919999174467', contact_id: awesome_corp.id, contact_type: awesome_corp.class.to_s} }
+
+      it "updates the requested phone_number" do
+        phone_number = PhoneNumber.create! valid_attributes
+        put :update, {:id => phone_number.to_param, :phone_number => new_attributes}, valid_session
+        phone_number.reload
+        expect(phone_number.number).to eq("+919999174467")
+        expect(phone_number.contact_id).to eq(awesome_corp.id)
+      end
+
+      it "assigns the requested phone_number as @phone_number" do
+        phone_number = PhoneNumber.create! valid_attributes
+        put :update, {:id => phone_number.to_param, :phone_number => valid_attributes}, valid_session
+        expect(assigns(:phone_number)).to eq(phone_number)
+      end
+
+      it "redirects to the phone_number's company" do
+        phone_number = PhoneNumber.create! valid_attributes
+        put :update, {:id => phone_number.to_param, :phone_number => valid_attributes}, valid_session
+        expect(response).to redirect_to(company_path(awesome_corp))
+      end
+    end
+
+    context "with invalid person params" do
       it "assigns the phone_number as @phone_number" do
         phone_number = PhoneNumber.create! valid_attributes
         put :update, {:id => phone_number.to_param, :phone_number => invalid_attributes}, valid_session

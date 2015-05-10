@@ -1,9 +1,27 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Company Name: </strong>
   <%= @company.name %>
 </p>
 
+<table class='phone_numbers_table'>
+	<strong>Phone numbers:</strong>
+	<tr>
+		<th>Phone Number</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
+	<% @company.phone_numbers.each do |phone_number| %>
+		<tr>
+			<td><%= phone_number.number %></td>
+			<td><%= link_to "Edit", edit_phone_number_path(phone_number) %></td>
+			<td><%= link_to "Delete", phone_number_path(phone_number), method: :delete, data: {confirm: "Are you sure?"}  %></td>
+		</tr>
+	<% end %>
+</table>
+
+<%= link_to "Add new Phone Number", new_phone_number_path(contact_id: @company.id, contact_type: @company.class.to_s) %>
+<br />
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>
