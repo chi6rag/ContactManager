@@ -21,7 +21,25 @@
 	<% end %>
 </table>
 
+<table class='email_addresses_table'>
+	<strong>Email Addresses:</strong>
+	<tr>
+		<th>Email Address</th>
+		<th>Edit</th>
+		<th>Delete</th>
+	</tr>
+	<% @company.email_addresses.each do |email_address| %>
+		<tr>
+			<td><%= email_address.address %></td>
+			<td><%= link_to "Edit", edit_email_address_path(email_address) %></td>
+			<td><%= link_to "Delete", email_address_path(email_address), method: :delete, data: {confirm: "Are you sure?"}  %></td>
+		</tr>
+	<% end %>
+</table>
+
 <%= link_to "Add new Phone Number", new_phone_number_path(contact_id: @company.id, contact_type: @company.class.to_s) %>
+<br />
+<%= link_to "Add new Email Address", new_email_address_path(contact_id: @company.id, contact_type: @company.class.to_s) %>
 <br />
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>

@@ -60,4 +60,68 @@ describe 'The Company View', type: :feature do
 		end
 	end
 
+	describe "Email Address Table" do 
+		before(:each) do 
+			company.email_addresses.create(address: 'hello@awesomecorp.com')
+			company.email_addresses.create(address: 'contact@awesomecorp.com')
+			visit company_path(company)
+		end
+
+		it "has email addresses" do 
+			company.email_addresses.each do |email_address|
+				expect(page).to have_selector('td', text: email_address.address)
+			end
+		end
+
+		it "has link to add a new email address" do
+			expect(page).to have_link("Add new Email Address", href: new_email_address_path(contact_id: company.id, contact_type: company.class.to_s))
+		end
+
+		it "adds a new email address" do 
+			click_link("Add new Email Address", href: new_email_address_path(contact_id: company.id, contact_type: company.class.to_s))
+			fill_in("Address", with: "carreers@awesomecorp.com")
+			click_button("Create Email address")
+			expect(current_path).to eq(company_path(company))
+			expect(page).to have_selector('td', text: "carreers@awesomecorp.com")
+		end
+
+		it "has links to edit email address" do 
+			within('.email_addresses_table') do
+				company.email_addresses.each do |email_address|
+					expect(page).to have_selector('td', text: email_address.address)
+				end
+			end
+		end
+
+		it "edits an existing email address" do 
+			old_email = company.email_addresses.first
+			new_email = "hi@awesomecorp.com"
+			within('.email_addresses_table') do
+				first(:link, "Edit").click
+      end
+    	fill_in("Address", with: new_email)
+    	click_button "Update Email address"
+    	expect(current_path).to eq(company_path(company))
+    	expect(page).to have_selector('td', text: new_email)
+		end
+
+		it "has links to delete email addresses" do
+			within('.email_addresses_table') do 
+				company.email_addresses.each do |email_address|
+					expect(page).to have_link("Delete", email_address_path(email_address))
+				end
+			end
+		end
+
+		it "deletes an existing email address" do 
+			existing_email_address = company.email_addresses.first
+			within('.email_addresses_table') do 
+				first(:link, "Delete").click
+			end
+			expect(current_path).to eq(company_path(company))
+			expect(page).to_not have_selector('td', text: existing_email_address)
+		end
+
+	end
+
 end

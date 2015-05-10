@@ -13,9 +13,14 @@
 
   <div class="field">
     <%= f.label :address %><br>
-    <%= f.text_field :address %>
+    <%= f.text_field :address, placeholder: 'Email Address' %>
   </div>
-    <%= f.hidden_field :person_id %>
+  <div class="field">
+    <%= f.hidden_field :contact_id, placeholder: 'Contact ID' %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :contact_type, placeholder: 'Contact Type' %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

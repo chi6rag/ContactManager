@@ -29,12 +29,7 @@ class PhoneNumbersController < ApplicationController
     respond_to do |format|
       if @phone_number.save
         format.html {
-          case @phone_number.contact.class.to_s
-          when 'Person'
-            redirect_to person_path(@phone_number.contact), notice: 'Phone number was successfully created.'
-          when 'Company'
-            redirect_to company_path(@phone_number.contact), notice: 'Phone number was successfully created.'
-          end
+          redirect_to @phone_number.contact, notice: 'Phone number was successfully created.'
         }
         format.json { render :show, status: :created, location: @phone_number }
       else
