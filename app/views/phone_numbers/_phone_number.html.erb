@@ -1,0 +1,5 @@
+<tr>
+	<td><%= phone_number.number %></td>
+	<td><%= link_to "Edit", edit_phone_number_path(phone_number) %></td>
+	<td><%= link_to "Delete", phone_number_path(phone_number), method: :delete, data: {confirm: "Are you sure?"}  %></td>
+</tr>

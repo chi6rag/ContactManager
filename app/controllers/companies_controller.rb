@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :edit, :update, :destroy]
+  # before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_action :find_resource, only: [:edit, :update, :destroy, :show]
 
   # GET /companies
   # GET /companies.json
@@ -10,6 +11,7 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
+    @company_phone_numbers = @company.phone_numbers
   end
 
   # GET /companies/new

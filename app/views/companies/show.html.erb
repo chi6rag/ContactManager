@@ -12,13 +12,7 @@
 		<th>Edit</th>
 		<th>Delete</th>
 	</tr>
-	<% @company.phone_numbers.each do |phone_number| %>
-		<tr>
-			<td><%= phone_number.number %></td>
-			<td><%= link_to "Edit", edit_phone_number_path(phone_number) %></td>
-			<td><%= link_to "Delete", phone_number_path(phone_number), method: :delete, data: {confirm: "Are you sure?"}  %></td>
-		</tr>
-	<% end %>
+	<%= render partial: 'phone_numbers/phone_number', collection: @company.phone_numbers %>
 </table>
 
 <table class='email_addresses_table'>
@@ -28,13 +22,7 @@
 		<th>Edit</th>
 		<th>Delete</th>
 	</tr>
-	<% @company.email_addresses.each do |email_address| %>
-		<tr>
-			<td><%= email_address.address %></td>
-			<td><%= link_to "Edit", edit_email_address_path(email_address) %></td>
-			<td><%= link_to "Delete", email_address_path(email_address), method: :delete, data: {confirm: "Are you sure?"}  %></td>
-		</tr>
-	<% end %>
+	<%= render partial: 'email_addresses/email_address', collection: @company.email_addresses %>
 </table>
 
 <%= link_to "Add new Phone Number", new_phone_number_path(contact_id: @company.id, contact_type: @company.class.to_s) %>
