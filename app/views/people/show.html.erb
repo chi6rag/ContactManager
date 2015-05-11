@@ -1,38 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="person">
+	<p id="notice"><%= notice %></p>
+	<p>
+	  <strong>First name:</strong>
+	  <%= @person.first_name %>
+	</p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @person.first_name %>
-</p>
+	<p>
+	  <strong>Last name:</strong>
+	  <%= @person.last_name %>
+	</p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @person.last_name %>
-</p>
+	<table class='phone_numbers_table'>
+		<strong>Phone numbers:</strong>
+		<tr>
+			<th>Phone Number</th>
+			<th>Options</th>
+		</tr>
+		<%= render partial: 'phone_numbers/phone_number', collection: @person.phone_numbers %>
+	</table>
 
-<table class='phone_numbers_table'>
-	<strong>Phone numbers:</strong>
-	<tr>
-		<th>Phone Number</th>
-		<th>Edit</th>
-		<th>Delete</th>
-	</tr>
-	<%= render partial: 'phone_numbers/phone_number', collection: @person.phone_numbers %>
-</table>
+	<table class='email_addresses_table'>
+		<strong>Email Addresses: </strong>
+		<tr>
+			<th>Email Address</th>
+			<th>Options</th>
+		</tr>
+		<%= render partial: 'email_addresses/email_address', collection: @person.email_addresses %>
+	</table>
 
-<table class='email_addresses_table'>
-	<strong>Email Addresses: </strong>
-	<tr>
-		<th>Email Address</th>
-		<th>Edit</th>
-		<th>Delete</th>
-	</tr>
-	<%= render partial: 'email_addresses/email_address', collection: @person.email_addresses %>
-</table>
-
-<%= link_to "Add new Phone Number", new_phone_number_path(contact_id: @person.id, contact_type: @person.class.to_s) %>
-<br />
-<%= link_to "Add new Email Address", new_email_address_path(contact_id: @person.id, contact_type: @person.class.to_s) %>
-<br />
-<%= link_to 'Edit', edit_person_path(@person) %> |
-<%= link_to 'Back', people_path %>
+	<%= link_to "Add new Phone Number", new_phone_number_path(contact_id: @person.id, contact_type: @person.class.to_s) %>
+	<br />
+	<%= link_to "Add new Email Address", new_email_address_path(contact_id: @person.id, contact_type: @person.class.to_s) %>
+	<br />
+	<%= link_to 'Edit', edit_person_path(@person) %> |
+	<%= link_to 'Back', people_path %>
+</div>

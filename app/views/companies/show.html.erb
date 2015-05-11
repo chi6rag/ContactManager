@@ -1,33 +1,33 @@
-<p id="notice"><%= notice %></p>
+<div class="company">
+	<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Company Name: </strong>
-  <%= @company.name %>
-</p>
+	<h2>
+	  <strong>Company Name: </strong>
+	  <%= @company.name %>
+	</h2>
 
-<table class='phone_numbers_table'>
-	<strong>Phone numbers:</strong>
-	<tr>
-		<th>Phone Number</th>
-		<th>Edit</th>
-		<th>Delete</th>
-	</tr>
-	<%= render partial: 'phone_numbers/phone_number', collection: @company.phone_numbers %>
-</table>
+	<table class='phone_numbers_table'>
+		<strong>Phone numbers:</strong>
+		<tr>
+			<th>Phone Number</th>
+			<th colspan="2">Options</th>
+		</tr>
+		<%= render partial: 'phone_numbers/phone_number', collection: @company.phone_numbers %>
+	</table>
 
-<table class='email_addresses_table'>
-	<strong>Email Addresses:</strong>
-	<tr>
-		<th>Email Address</th>
-		<th>Edit</th>
-		<th>Delete</th>
-	</tr>
-	<%= render partial: 'email_addresses/email_address', collection: @company.email_addresses %>
-</table>
+	<table class='email_addresses_table'>
+		<strong>Email Addresses:</strong>
+		<tr>
+			<th>Email Address</th>
+			<th colspan="2">Options</th>
+		</tr>
+		<%= render partial: 'email_addresses/email_address', collection: @company.email_addresses %>
+	</table>
 
-<%= link_to "Add new Phone Number", new_phone_number_path(contact_id: @company.id, contact_type: @company.class.to_s) %>
-<br />
-<%= link_to "Add new Email Address", new_email_address_path(contact_id: @company.id, contact_type: @company.class.to_s) %>
-<br />
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+	<%= link_to "Add new Phone Number", new_phone_number_path(contact_id: @company.id, contact_type: @company.class.to_s) %>
+	<br />
+	<%= link_to "Add new Email Address", new_email_address_path(contact_id: @company.id, contact_type: @company.class.to_s) %>
+	<br />
+	<%= link_to 'Edit', edit_company_path(@company) %> |
+	<%= link_to 'Back', companies_path %>
+</div>
