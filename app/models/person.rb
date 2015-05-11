@@ -4,4 +4,8 @@ class Person < ActiveRecord::Base
 	# has_many :email_addresses, as: :contact
 	validates :first_name, presence: true
 	validates :last_name, presence: true
+
+	def to_s
+		"#{first_name} #{last_name}"
+	end
 end

@@ -30,4 +30,8 @@ RSpec.describe Person, type: :model do
 		expect(person.email_addresses.map(&:address)).to eq(['alicegreen@gmail.com'])
 	end
 
+	it "convert to a string with last_name, first_name" do 
+		expect(person.to_s).to eq("Alice Green")
+	end
+
 end
