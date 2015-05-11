@@ -10,7 +10,6 @@ describe SessionsController do
 			}
 			post :create
 			user = User.find_by_uid_and_provider('ABCD123', 'twitter')
-			# expect(user.name).to eq("Chirag")
 			expect(controller.current_user.id).to eq(user.id)
 		end
 
@@ -33,7 +32,7 @@ describe SessionsController do
 				provider: 'twitter'
 			}
 			post :create
-			expect(response).to redirect_to(companies_path)
+			expect(response).to redirect_to(root_path)
 		end
 
 	end
