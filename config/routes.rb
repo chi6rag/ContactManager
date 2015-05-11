@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :phone_numbers, except: [:index, :show]
   resources :people
   get '/auth/:provider/callback', to: 'sessions#create'
-  resources :sessions, :only => [:create]
+  resources :sessions, :only => [:create, :destroy]
   get '/login' => redirect("auth/twitter"), as: :login
   delete '/logout' => 'sessions#destroy', as: :logout
   root 'site#index'

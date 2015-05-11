@@ -25,13 +25,24 @@ describe SessionsController do
 			expect(controller.current_user.id).to eq(user.id)
 		end
 
-		it "redirects to companies page" do 
+		it "redirects to root path after logging in" do 
 			@request.env['omniauth.auth'] = {
 				info: { name: 'Chirag' },
 				uid: 'ABCD123',
 				provider: 'twitter'
 			}
 			post :create
+			expect(response).to redirect_to(root_path)
+		end
+
+		it "logs out a user" do 
+			session[:user_id] = 1
+			delete :destroy
+			expect(session[:user_id]).to be_nil
+		end
+
+		it "redirects to root path after logging out" do 
+			delete :destroy
 			expect(response).to redirect_to(root_path)
 		end
 
