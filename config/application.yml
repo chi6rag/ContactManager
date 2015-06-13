@@ -1,0 +1,7 @@
+development:
+  twitter_app_id: 9bMkYZSaa6aKk7VMTshk8ngW3
+  twitter_app_secret: oJl2vD7dFszIsM5bKmjrbMRm4PPzN6Tt38JxjHN7CKHcTU56KJ
+
+production:
+  twitter_app_id: Aeqgv5ItlPcXEyrM8EBb54Muu
+  twitter_app_secret: z81qMD71KPRKCJHxaJPVza9rF7fMT6SIBPwItOvObZWDH6W86M
