@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "people/new", type: :view do
   before(:each) do
-    assign(:person, Person.new())
+    assign(:person, Person.new(first_name: 'Jon', last_name: 'Doe'))
   end
 
   it "renders new person form" do

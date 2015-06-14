@@ -41,6 +41,9 @@ group :development, :test do
   gem 'spring'
   gem 'rspec-rails'
   gem 'sqlite3'
+  gem 'pry'
+  gem 'guard'
+  gem 'guard-livereload', require: false
 end
 
 group :production do 
