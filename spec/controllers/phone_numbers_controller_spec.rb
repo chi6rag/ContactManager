@@ -23,8 +23,10 @@ RSpec.describe PhoneNumbersController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # PhoneNumber. As you add validations to PhoneNumber, be sure to
   # adjust the attributes here as well.
+  let(:person){ Person.create(first_name: 'John', last_name: 'Meyer') }
+
   let(:valid_attributes) {
-    {number: '9999999999', person_id: 1}
+    {number: '9999999999', person_id: person.id}
   }
 
   let(:invalid_attributes) {
@@ -81,9 +83,10 @@ RSpec.describe PhoneNumbersController, type: :controller do
         expect(assigns(:phone_number)).to be_persisted
       end
 
-      it "redirects to the created phone_number" do
+      it "redirects to the phone_number's person" do
+        valid_attributes = {number: '+19999999999', person_id: person.id}
         post :create, {:phone_number => valid_attributes}, valid_session
-        expect(response).to redirect_to(PhoneNumber.last)
+        expect(response).to redirect_to(person_path(person))
       end
     end
 

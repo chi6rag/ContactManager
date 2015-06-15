@@ -15,4 +15,18 @@ describe 'the person view', type: :feature do
 		end
 	end
 
+	it "shows a link to add a new phone number" do 
+		expect(page).to have_link('Add new Phone Number', href: new_phone_number_path(person_id: person.id))
+	end
+
+	it "adds a new phone number" do 
+		click_on 'Add new Phone Number'
+		within('form') do 
+			fill_in 'Number', with: '+919999174467'
+			click_button 'Create Phone Number'
+		end
+		expect(current_path).to eq(person_path(person))
+		expect(page).to have_content('+919999174467')
+	end
+
 end
