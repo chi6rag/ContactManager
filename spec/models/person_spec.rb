@@ -19,6 +19,10 @@ RSpec.describe Person, type: :model do
 		expect(person).to be_valid
 	end
 
+	it "has many phone numbers" do
+		expect(person).to respond_to(:phone_numbers)
+	end
+
 	it "has an array of phone numbers" do
 		expect(person.phone_numbers).to eq([])
 	end
