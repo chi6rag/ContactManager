@@ -1,4 +1,4 @@
-source 'http://production.s3.rubygems.org'
+source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -17,7 +17,7 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
@@ -40,9 +40,11 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'rspec-rails'
+  gem 'capybara'
   gem 'sqlite3'
   gem 'pry'
   gem 'guard'
+  gem 'guard-bundler', require: false
   gem 'guard-livereload', require: false
 end
 

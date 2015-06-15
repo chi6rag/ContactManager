@@ -1,6 +1,12 @@
 <p id="notice"><%= notice %></p>
 <p>First Name: <%= @person.first_name %></p>
 <p>Last Name: <%= @person.last_name %></p>
+<h5>Phone Numbers</h5>
+<ul>
+	<%= @person.phone_numbers.each do |phone_number| %>
+		<p><%= phone_number.number %></p>
+	<% end %>
+</ul>
 <p></p>
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>
