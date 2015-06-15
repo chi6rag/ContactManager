@@ -2,11 +2,16 @@
 <p>First Name: <%= @person.first_name %></p>
 <p>Last Name: <%= @person.last_name %></p>
 <h5>Phone Numbers</h5>
-<ul>
+<table>
+	
 	<% @person.phone_numbers.each do |phone_number| %>
-		<p><%= phone_number.number %></p>
+		<tr>
+			<td><%= phone_number.number %></td>
+			<td><%= link_to 'Edit', edit_phone_number_path(phone_number) %></td>
+		</tr>
 	<% end %>
-</ul>
+
+</table>
 <p></p>
 <%= link_to 'Add new Phone Number', new_phone_number_path(person_id: @person.id) %> |
 <%= link_to 'Edit', edit_person_path(@person) %> |
