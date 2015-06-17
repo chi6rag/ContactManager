@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :companies
   get '/phone_numbers' => 'phone_numbers#index', as: 'phone_numbers'
   post '/phone_numbers' => 'phone_numbers#create'
   get '/phone_numbers/new' => 'phone_numbers#new', as: 'new_phone_number'
