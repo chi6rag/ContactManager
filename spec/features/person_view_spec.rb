@@ -59,4 +59,8 @@ describe 'the person view', type: :feature do
 		expect(page).to_not have_content(phone_number.number)
 	end
 
+	it "has an array of email addresses" do 
+		expect(person.email_addresses).to eq([])
+	end
+
 end
