@@ -47,4 +47,9 @@ describe 'the person view', type: :feature do
 		expect(page).to_not have_content(phone_number.number)
 	end
 
+	it "has a link to destroy a phone number" do 
+		phone_number = person.phone_numbers.first
+		expect(page).to have_link("Delete")
+	end
+
 end
