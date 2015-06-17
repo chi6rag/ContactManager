@@ -6,6 +6,8 @@ describe 'the person view', type: :feature do
 	before(:each) do
 		person.phone_numbers.create!(number: '9999999999')
 		person.phone_numbers.create!(number: '8888888888')
+		person.email_addresses.create!(address: 'janedoe@example.com')
+		person.email_addresses.create!(address: 'johndoe@example.com')
 		visit person_path(person)
 	end
 
@@ -61,10 +63,12 @@ describe 'the person view', type: :feature do
 		expect(page).to_not have_content(phone_number.number)
 	end
 
-	it "has an array of email addresses" do 
-		expect(person.email_addresses).to eq([])
-	end
-
 	# email addresses
+
+	it "shows a list of email addresses" do
+		person.email_addresses.each do |email|
+			expect(page).to have_content(email.address)
+		end
+	end
 
 end
