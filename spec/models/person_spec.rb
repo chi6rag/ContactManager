@@ -27,4 +27,12 @@ RSpec.describe Person, type: :model do
 		expect(person.phone_numbers).to eq([])
 	end
 
+	it "has many email addresses" do 
+		expect(person.email_addresses).to eq([])
+	end
+
+	it "has many email addresses" do
+		expect(person).to respond_to(:email_addresses)
+	end
+
 end

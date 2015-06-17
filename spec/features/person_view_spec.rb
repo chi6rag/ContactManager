@@ -9,6 +9,8 @@ describe 'the person view', type: :feature do
 		visit person_path(person)
 	end
 
+	# phone numbers
+
 	it "shows a list of phone numbers" do 
 		person.phone_numbers.each do |phone_number|
 			expect(page).to have_content(phone_number.number)
@@ -62,5 +64,7 @@ describe 'the person view', type: :feature do
 	it "has an array of email addresses" do 
 		expect(person.email_addresses).to eq([])
 	end
+
+	# email addresses
 
 end
